@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ResTJUnit</groupId>
+	<artifactId>ResTJUnit</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging> 
+	  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <default.encoding>UTF-8</default.encoding>
+  </properties>
+  
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		
+		<plugins>
+			<plugin>
+  <groupId>eu.stamp-project</groupId>
+      <artifactId>pitmp-maven-plugin</artifactId>
+      <version>1.3.7</version>
+  <configuration>
+    <mutationEngine>descartes</mutationEngine>
+ <targetClasses> <param>*</param> </targetClasses> <targetTests> <param>*</param> </targetTests> 
+ <skip>false</skip>
+      <failWhenNoMutations>false</failWhenNoMutations>
+      <mutationThreshold>40</mutationThreshold>
+      <coverageThreshold>60</coverageThreshold>
+ </configuration>
+</plugin>
+<plugin>
+    <groupId>eu.stamp-project</groupId>
+    <artifactId>dspot-maven</artifactId>
+    <version>3.1.0</version>
+    <configuration>
+        <src>joram/mom/core/src/main/java</src>
+            <testSrc>joram/mom/core/src/test/java</testSrc>
+            <testCriterion>JacocoCoverageSelector</testCriterion>
+            <output-path>target/dspot/output</output-path>
+            <verbose>true</verbose>
+            <generate-new-test-class>true</generate-new-test-class>
+            <with-comment>true</with-comment>
+            <use-maven-to-exe-test>true</use-maven-to-exe-test>
+    </configuration>
+</plugin>
+ <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.8.0</version>
+                        <executions>
+        <execution>
+            <id>default-testCompile</id>
+            <phase>none</phase>
+        </execution>
+    </executions>
+                <configuration>
+                   <source>1.8</source>
+                   <target>1.8</target>
+                 <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+            </configuration>
+             </plugin>
+        </plugins>
+	</build>
+	<dependencies>
+	
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13</version>
+    </dependency>
+  
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.8</version>
+		</dependency>
+		
+		<dependency>
+		
+      <groupId>eu.stamp-project</groupId>
+      <artifactId>descartes</artifactId>
+      <version>1.2.6</version>
+    </dependency>
+	</dependencies>
+       
+<profiles><profile>
+<id>descartes-plugin-profile-24-06-20-02-38-15</id>
+<build>
+<plugins>
+<plugin>
+<groupId>org.pitest</groupId>
+<artifactId>pitest-maven</artifactId>
+<version>1.4.0</version>
+<dependencies>
+<dependency>
+<groupId>eu.stamp-project</groupId>
+<artifactId>descartes</artifactId>
+<version>1.2.4</version>
+</dependency>
+</dependencies>
+<configuration>
+<mutationEngine>descartes</mutationEngine>
+<mutators>
+<mutator>void</mutator><mutator>null</mutator><mutator>true</mutator><mutator>false</mutator><mutator>empty</mutator><mutator>0</mutator><mutator>1</mutator><mutator>(byte)0</mutator><mutator>(byte)1</mutator><mutator>(short)1</mutator><mutator>(short)2</mutator><mutator>0L</mutator><mutator>1L</mutator><mutator>0.0</mutator><mutator>1.0</mutator><mutator>0.0f</mutator><mutator>1.0f</mutator><mutator>'\40'</mutator><mutator>'A'</mutator><mutator>""</mutator><mutator>"A"</mutator></mutators>
+<outputFormats>
+<value>HTML</value><value>METHODS</value><value>ISSUES</value></outputFormats>
+</configuration>
+</plugin>
+<plugin>
+<groupId>eu.stamp-project</groupId>
+<artifactId>pitmp-maven-plugin</artifactId>
+<version>1.3.4</version>
+<configuration>
+<mutationEngine>descartes</mutationEngine>
+</configuration>
+</plugin>
+<plugin>
+<artifactId>maven-clean-plugin</artifactId>
+<version>3.0.0</version>
+<configuration>
+<filesets>
+<fileset>
+<directory>.</directory>
+<includes>
+<include>*.txt</include>
+<include>*.traces</include>
+<include>*.log</include>
+</includes>
+<followSymlinks>false</followSymlinks>
+</fileset>
+</filesets>
+</configuration>
+</plugin>
+</plugins>
+</build>
+</profile></profiles></project>
