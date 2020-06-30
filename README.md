@@ -21,3 +21,6 @@ Click on "RUN As JUnit Test"
 
 ## Code Coverage
 The code coverage of the tests based on lines is 64.1%
+
+## CI used
+Jenkins was used to run the tests Automatically
